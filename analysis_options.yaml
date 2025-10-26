@@ -1,0 +1,40 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - .dart_tool/**
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+  errors:
+    # Allow const even when not strictly necessary
+    unnecessary_const: ignore
+    unnecessary_new: ignore
+
+linter:
+  rules:
+    # ✅ Recommended Flutter/Dart rules
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    - prefer_const_declarations
+    - prefer_final_fields
+    - prefer_final_locals
+    - avoid_print
+    - use_key_in_widget_constructors
+    - avoid_unnecessary_containers
+    - sized_box_for_whitespace
+    - sort_child_properties_last
+
+    # ✅ Readability & formatting
+    - always_put_required_named_parameters_first
+    - always_use_package_imports
+    - require_trailing_commas
+    - unnecessary_this
+
+    # ✅ Error-prone code checks
+    - avoid_types_as_parameter_names
+    - avoid_returning_null
+    - avoid_relative_lib_imports
+    - null_closures
+    - avoid_void_async
