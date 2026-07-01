@@ -57,17 +57,23 @@ class _HomeTaskState extends State<HomeTask> {
                         ),
                       );
                       if (updatedTask != null) {
-                        await HiveService.instance.editTask(updatedTask, index);
-                        setState(() {
-                          tasks[index] = updatedTask;
-                        });
+                        final taskKey = HiveService.instance.getKeyAt(index);
+                        if (taskKey != null) {
+                          await HiveService.instance.editTask(updatedTask, taskKey);
+                          setState(() {
+                            tasks[index] = updatedTask;
+                          });
+                        }
                       }
                       return false;
                     } else if (direction == DismissDirection.endToStart) {
-                      await HiveService.instance.deleteTask(index);
-                      setState(() {
-                        tasks.removeAt(index);
-                      });
+                      final taskKey = HiveService.instance.getKeyAt(index);
+                      if (taskKey != null) {
+                        await HiveService.instance.deleteTask(taskKey);
+                        setState(() {
+                          tasks.removeAt(index);
+                        });
+                      }
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

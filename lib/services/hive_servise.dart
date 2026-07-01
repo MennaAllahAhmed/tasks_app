@@ -18,6 +18,15 @@ class HiveService {
   }
 
   List<Elements> get tasks => _hiveBox.values.toList();
+
+  int? getKeyAt(int index) {
+    try {
+      return _hiveBox.keyAt(index);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> addTask(Elements task) async {
     try {
       await _hiveBox.add(task);
@@ -26,17 +35,17 @@ class HiveService {
     }
   }
 
-  Future<void> editTask(Elements task, int index) async {
+  Future<void> editTask(Elements task, dynamic key) async {
     try {
-      await _hiveBox.putAt(index, task);
+      await _hiveBox.put(key, task);
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> deleteTask(int index) async {
+  Future<void> deleteTask(dynamic key) async {
     try {
-      await _hiveBox.delete(index);
+      await _hiveBox.delete(key);
     } catch (e) {
       rethrow;
     }
@@ -44,10 +53,9 @@ class HiveService {
 
   Elements? getTask(int index) {
     try {
-      _hiveBox.getAt(index);
+      return _hiveBox.getAt(index);
     } catch (e) {
       rethrow;
     }
-    return null;
   }
 }
