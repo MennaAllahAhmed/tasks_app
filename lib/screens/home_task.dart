@@ -59,7 +59,10 @@ class _HomeTaskState extends State<HomeTask> {
                       if (updatedTask != null) {
                         final taskKey = HiveService.instance.getKeyAt(index);
                         if (taskKey != null) {
-                          await HiveService.instance.editTask(updatedTask, taskKey);
+                          await HiveService.instance.editTask(
+                            updatedTask,
+                            taskKey,
+                          );
                           setState(() {
                             tasks[index] = updatedTask;
                           });
